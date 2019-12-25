@@ -1,6 +1,5 @@
 var table = new Array();
 
-var pageInit = new Object(); // 分页类
 var  currentLock = new Object(); //当期锁仓
 var lockRecord = new Object(); // 锁仓记录
 var unlockRecord = new Object(); // 锁仓记录
@@ -77,17 +76,6 @@ table.push(bonusRecord);
 
 table.push(mineRecord);
 
-pageInit.init= function(){
-    pageInit.size = 50;   // 拉取的条数
-    pageInit.preTotal = 0; // 已 拿去的数量
-    pageInit.first = true;    // 是否第一页
-    pageInit.last = true;  // 是否最后一页
-    pageInit.index = 0;    // 当前第几页
-    pageInit.showSize = 10;  // 每页多少条
-    return pageInit;
-}
-pageInit.init();
-//size,preTotal,first,last,index
 
 
 

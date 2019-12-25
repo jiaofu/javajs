@@ -1,0 +1,95 @@
+	<style>
+		[v-cloak] {
+        display: none;
+    }
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;}
+	
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+	}
+	.btn {
+	    display: inline-block;
+	    padding: 6px 12px;
+	    margin-bottom: 0;
+	    font-size: 14px;
+	    font-weight: 400;
+	    line-height: 1.42857143;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    -ms-touch-action: manipulation;
+	    touch-action: manipulation;
+	    cursor: pointer;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    background-image: none;
+	    border: 1px solid transparent;
+	    border-radius: 4px;
+	}
+	
+	.btn-default {
+	    color: #333;
+	    background-color: #fff;
+	    border-color: #ccc;
+	}
+	
+
+    .btn{
+        width: 100px;
+        font-size: 15px;
+    }
+
+    .do{
+        overflow: hidden;
+        padding-left: 0;
+        margin-bottom: 25px;
+    }
+
+    .do li{
+
+        overflow: hidden;
+        float: left;
+        list-style: none;
+        margin-left: 25px;
+    }
+    .btn-active{
+        background-color: #00c1de;
+        color: #fff;
+    }
+	a {
+	    color: #337ab7;
+	    text-decoration: none;
+	}
+
+.table {
+    border: none;
+	    width: 100%;
+	    max-width: 100%;
+	    margin-bottom: 20px;
+		background-color: transparent;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}

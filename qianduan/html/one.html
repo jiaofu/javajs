@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="../css/mine.css" rel="stylesheet">
+	<body>
+		<div id="wrapper" class="bg-strip">
+
+			<div id="page-wrapper" style="">
+            <span><span>用户交易对:</span><span style="width: 250px" ><input v-model="symbolName" type="text" style="width: 250px;display: inline" class="form-control " value="" id="symbolName"  maxlength="6"/></span></span>
+
+
+            <span style="margin-left: 8%;font-size: 14px">
+                 <input type="button" v-on:click="getRecord()" class="btn btn-default" id="query" value="查询" style="width: 108px;height: 36px;background-color: #00c1de;color: #fff;border: none;"/></span>
+        </div>
+
+
+        <page-component v-if="posts.dataList"  @next-page="nextPage" ref="component"  v-bind:posts="posts"></page-component>
+
+			</div>
+		</div>
+	</body>
+
+	<script src="../js/mask.js"></script>
+	<script type="application/javascript" src="../js/resultHandle.js"></script>
+	<script type="application/javascript" src="../js/vue.js"></script>
+	<script type="application/javascript" src="../js/vue-resource.js"></script>
+	<script type="application/javascript" src="../js/pageComponents.js"></script>
+	<script type="application/javascript" src="../js/mineIndexDataOne.js"></script>
+	<script type="application/javascript" src="../js/mineIndexOne.js"></script>
+</html>
