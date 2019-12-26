@@ -1,9 +1,81 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<html lang="en">
+    <link href="../css/mine.css" rel="stylesheet">
+	<link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+	<link href="../css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<script src="../js/bootstrap/jquery-1.8.3.min.js"></script>
+		
+<body>
+<div id="wrapper"  class="bg-strip">
+
+    <div id="page-wrapper" style="">
+        <div>
+
+           <div> <span style="font-size: 14px;">
+                            <input type="button" v-on:click="getRecord(1)"  v-bind:class="{'btn-active':index==1}" class="btn btn-default"  value="挖矿" /></span>
+
+            <span style="margin-left: 8%;font-size: 14px">
+                            <input type="button"  v-on:click="getRecord(2)" v-bind:class="{'btn-active':index==2}" class="btn btn-default"  value="分红"/></span>
+
+
+               <span style="margin-left: 8%;font-size: 14px">
+                            <input type="button"  v-on:click="getRecord(3)" v-bind:class="{'btn-active':index==3}" class="btn btn-default"  value="当期锁仓"/></span>
+           </div>
+            <div style="margin-top: 50px">
+                <span style="">日期选择插件：</span>
+                <span style=""> <input type="text" id="datetimepickerStart" data-date-format="yyyy-mm-dd"></span>
+
+                <span style="margin-left: 50px"> <input type="text"  id="datetimepickerEnd" data-date-format="yyyy-mm-dd"></span>
+
+            <span style="margin-left: 8%;font-size: 14px">
+              <input type="button"  class="btn btn-default"  v-on:click="getRecord(0)" value="查询" style="width: 108px;height: 36px;background-color: #00c1de;color: #fff;border: none;"/></span>
+               <span style="margin-left: 8%;font-size: 24px"><a style="text-decoration:none" href="javascript:void(0)" v-on:click="excelData()">导出</a></span>
+            </div>
+
+
+        </div>
+
+
+         <page-component v-if="posts.dataList"  @next-page="nextPage" ref="component"  v-bind:posts="posts"></page-component>
+
+
+
+    </div>
+</div>
+</body>
+
+<script src="../js/mask.js"></script>
+<script src="../js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+<script src="../js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../js/bootstrap/bootstrap-table.min.js"></script>
+
+	<script type="application/javascript" src="../js/resultHandle.js"></script>
+	<script type="application/javascript" src="../js/vue.js"></script>
+	<script type="application/javascript" src="../js/axios.min.js"></script>
+	<script type="application/javascript" src="../js/pageComponents.js"></script>
+	<script type="application/javascript" src="../js/mineStatisticData.js"></script>
+	<script type="application/javascript" src="../js/mineStatistic.js"></script>
+		<script type="application/javascript" src="../js/qs.min.js"></script>
+<script type="application/javascript">
+    $('#datetimepickerStart').datetimepicker({
+        endDate:new Date(),
+        startDate:new Date(2019,6,30),
+        todayBtn : true,
+        minView:2,
+        autoclose:true,
+        language:"zh-CN"
+    });
+
+    $('#datetimepickerEnd').datetimepicker({
+        endDate:new Date(),
+        startDate:new Date(2019,6,30),
+        setDate: new Date(),
+        todayBtn : true,
+        minView:2,
+        autoclose:true,
+        language:"zh-CN"
+    });
+
+</script>
+
 </html>

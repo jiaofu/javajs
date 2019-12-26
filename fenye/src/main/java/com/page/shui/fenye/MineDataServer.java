@@ -2,6 +2,10 @@ package com.page.shui.fenye;
 
 import com.page.shui.fenye.dto.*;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -215,12 +219,86 @@ public class MineDataServer {
 
     }
 
+
+
+    /**
+     *
+     * @param size
+     * @return
+     */
+
+    public static List<BonusStatisticsDTO> bonusStatisticsDTOs = new ArrayList<>();
+    public static  List<BonusStatisticsDTO> userBonusRecord(int size, long preTotal,Date start,Date end){
+        if (bonusStatisticsDTOs.size() == 0) {
+
+            Calendar calendar = Calendar.getInstance();
+            for (int i = 0; i < 500; i++) {
+                BonusStatisticsDTO currentLockDTO = new BonusStatisticsDTO();
+                currentLockDTO.setFeeAmount("feeAmount"+i);
+                calendar.add(Calendar.DATE,1);
+                currentLockDTO.setBonusDate(calendar.getTime());
+                currentLockDTO.setReduceAmount( "reduceAmount"+i);
+                currentLockDTO.setUserId(i);
+                bonusStatisticsDTOs.add(currentLockDTO);
+            }
+        }
+        return   bonusStatisticsDTOs.stream().filter(q->q.getBonusDate().getTime()>=start.getTime() && q.getBonusDate().getTime()<=end.getTime()).skip(preTotal).limit(size).collect(Collectors.toList());
+    }
+
+
+    public static List<MineStatisticsDTO> mineStatisticsDTOs = new ArrayList<>();
+    public static  List<MineStatisticsDTO> mineRecord(int size,long preTotal,Date start,Date end){
+        if (mineStatisticsDTOs.size() == 0) {
+
+            Calendar calendar = Calendar.getInstance();
+            for (int i = 0; i < 500; i++) {
+                MineStatisticsDTO currentLockDTO = new MineStatisticsDTO();
+                currentLockDTO.setUserId(i);
+                currentLockDTO.setAmount("amount"+i);
+                calendar.add(Calendar.DATE,1);
+                currentLockDTO.setMineData(calendar.getTime());
+                mineStatisticsDTOs.add(currentLockDTO);
+            }
+        }
+        return   mineStatisticsDTOs.stream().filter(q->q.getMineData().getTime()>=start.getTime() && q.getMineData().getTime()<=end.getTime()).skip(preTotal).limit(size).collect(Collectors.toList());
+    }
+
+    /**
+     *
+     * @param size
+     * @param preTotal
+     * @param start
+     * @param end
+     * @return
+     */
+
+    public static  List<CurrentLockDTO> currentLock(int size,long preTotal,Date start,Date end){
+
+        return   lockDTOS.stream().filter(q->q.getLockDate().getTime()>=start.getTime() && q.getLockDate().getTime()<=end.getTime()).skip(preTotal).limit(size).collect(Collectors.toList());
+    }
+
     /**
      * @param list
      * @return
      */
-    public static List<Map<String, Object>> exportData(List list) {
+    public static List<Map<String, Object>> exportData(List list)throws Exception {
 
-        return null;
+        List<Map<String, Object>> maps = new ArrayList<>();
+        for(Object obj : list){
+            BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+            Map<String, Object> map = new HashMap<>();
+            for (int i = 0; i < propertyDescriptors.length; i++) {
+                String key = propertyDescriptors[i].getName();
+                if (!key.equals("class")) {
+                    PropertyDescriptor property = propertyDescriptors[i];
+                    Method getter = property.getReadMethod();
+                    Object value = getter.invoke(obj, new Object[0]);
+                    map.put(key, value);
+                }
+                maps.add(map);
+            }
+        }
+        return maps;
     }
 }

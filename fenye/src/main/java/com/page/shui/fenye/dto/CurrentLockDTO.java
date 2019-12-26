@@ -28,6 +28,8 @@ public class CurrentLockDTO {
 
     private long userId;
 
+
+
     public Date getLockDate() {
         return lockDate;
     }
